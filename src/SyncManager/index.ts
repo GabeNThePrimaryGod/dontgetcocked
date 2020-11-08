@@ -1,5 +1,8 @@
-import Player from "./Player";
 import { SyncManager } from "./SyncManager";
+import SyncableObjects from "./SyncableObjects";
 
-export { Player, SyncManager };
 export default SyncManager
+export { 
+    SyncManager,
+    SyncableObjects
+}

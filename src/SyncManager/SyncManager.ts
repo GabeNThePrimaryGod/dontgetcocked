@@ -1,6 +1,6 @@
 import socketIO from "socket.io";
 
-import { Player } from "./Player";
+import { Player } from "./SyncableObjects/Player";
 import env from "../env";
 
 export class SyncManager
