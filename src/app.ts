@@ -1,6 +1,8 @@
 import { initEvironement, env } from './env';
 
+const port = 8080;
+
 initEvironement();
 
-env.httpServer.listen(8080);
-console.log(`Server Listening on port ${8080}`);
+env.httpServer.listen(port);
+console.log(`Server Listening on port ${port}`);

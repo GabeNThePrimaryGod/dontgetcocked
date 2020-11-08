@@ -19,7 +19,7 @@ export class SyncableSocketObject extends SyncableObject {
         super(config);
 
         this.socket = config.socket;
-        console.log(`init new SocketObject as id "${this.socket.id}"`);
+        console.log(`init new SocketObject for class ${this.constructor.name} as id "${this.socket.id}"`);
 
         // this.constructor.name permet d'écouter et d'émettre sur plusieurs evenements differents en fonction du nom de la class mère
         this.socket.on(`sync${this.constructor.name}Pos`, (data: any) => { this.syncPos(data); });
