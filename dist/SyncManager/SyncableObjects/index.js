@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Player = exports.SyncableSocketObject = exports.SyncableObject = void 0;
+const Player_1 = require("./Player");
+Object.defineProperty(exports, "Player", { enumerable: true, get: function () { return Player_1.Player; } });
+const SyncableObject_1 = require("./SyncableObject");
+Object.defineProperty(exports, "SyncableObject", { enumerable: true, get: function () { return SyncableObject_1.SyncableObject; } });
+const SyncableSocketObject_1 = require("./SyncableSocketObject");
+Object.defineProperty(exports, "SyncableSocketObject", { enumerable: true, get: function () { return SyncableSocketObject_1.SyncableSocketObject; } });
+exports.default = SyncableObject_1.SyncableObject;

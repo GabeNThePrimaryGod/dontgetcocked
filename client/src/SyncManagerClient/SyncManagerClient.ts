@@ -5,17 +5,17 @@ type SyncManagerClientConfig = {
 
 class SyncManagerClient 
 {
-    socket: SocketIOClient.Socket | undefined
-    players: Map<string, Player>
-    config: SyncManagerClientConfig
+    static config = {
+        sendDelay: 10,
+        leeway: 0.1
+    } as SyncManagerClientConfig
 
-    constructor(config : SyncManagerClientConfig,)
-    {
-        this.config = config;
-        this.players = new Map<string, Player>();
-    }
+    static socket: SocketIOClient.Socket | undefined
 
-    public connectClient(localPlayerConfig : any) : void
+    // key : ObjType ?
+    static syncableObjs = [] as SyncableObject[]
+
+    public static connect(localPlayerConfig : any) : void
     {
         this.socket = io({
             reconnection: true,             // whether to reconnect automatically
@@ -25,10 +25,22 @@ class SyncManagerClient
             randomizationFactor: 0.5
         });
     
-        this.socket.on('newPlayer', onNewPlayer);
-        this.socket.on('playerLeave', onPlayerLeave);
-        this.socket.on('getPlayerPos', onGetPlayerPos);
+        this.socket.on('newPlayer', Player.onNewPlayer);
+        this.socket.on('playerLeave', Player.onPlayerLeave);
+        this.socket.on('getPlayerPos', Player.onGetPlayerPos);
 
         this.socket.emit('initPlayer', localPlayerConfig);
+    }
+
+    public static syncUpdate()
+    {
+        if(Player.instances.has(SyncManagerClient.socket.id))
+        {   
+            const playerData = Player.instances.get(SyncManagerClient.socket.id).data;
+
+            //console.log(playerData);
+
+            SyncManagerClient.socket.emit('syncPlayerPos', playerData);
+        }
     }
 }

@@ -1,18 +1,15 @@
-var syncManager = new SyncManagerClient({
-    sendDelay: 10,
-    leeway: 0.1
-});
 function setup() {
     createCanvas(1900, 900);
     DOM.canvas = document.getElementById('defaultCanvas0');
     DOM.canvas.hidden = true;
 }
 function onJoiningGame(localPlayerConfig, event) {
-    syncManager.connectClient(localPlayerConfig);
+    SyncManagerClient.connect(localPlayerConfig);
 }
 function draw() {
     background(0, 0, 0, 256);
-    for (const player of syncManager.players.values()) {
+    //TODO : proprifier ça
+    for (const player of Player.instances.values()) {
         player.draw();
     }
 }

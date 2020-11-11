@@ -10,7 +10,7 @@ export type SyncableSocketObjectData = SyncableObjectData & {
  * 
  * 
  */
-export class SyncableSocketObject extends SyncableObject {
+export abstract class SyncableSocketObject extends SyncableObject {
     
     socket : socketIO.Socket;
 

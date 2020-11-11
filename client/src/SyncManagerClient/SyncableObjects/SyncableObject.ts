@@ -1,10 +1,10 @@
-export type Position = { 
+type Pos = { 
     x: any;
     y: any;
 };
 
-export type SyncableObjectData = {
-    pos: Position
+type SyncableObjectData = {
+    pos: Pos
 }
 
 /**
@@ -12,13 +12,16 @@ export type SyncableObjectData = {
  * 
  * 
  */
-export abstract class SyncableObject {
+class SyncableObject {
     
-    pos : Position;
+    pos : Pos;
 
     constructor(config : any) 
     {
-        this.pos = config.pos || {x: 0, y:0};
+        this.pos = config.pos || {
+            x: 0, 
+            y: 0
+        };
 
     }
 
